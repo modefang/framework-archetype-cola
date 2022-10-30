@@ -1,0 +1,18 @@
+spring:
+  web:
+    resources:
+      static-locations: classpath:/smart-doc/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: xxxxxx
+    password: xxxxxx
+    url: jdbc:mysql://xxxxxx:3306/xxxxxx?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8&allowMultiQueries=true
+  redis:
+    host: xxxxxx
+    port: 6379
+    password: xxxxxx
+
+# 控制台打印sql
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

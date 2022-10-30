@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ${rootArtifactId}
+  profiles:
+    active: dev
+    include: druid, mybatis-plus, arthas

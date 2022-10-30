@@ -1,0 +1,5 @@
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/*/*Mapper.xml
+  configuration:
+    # 避免数据库null值导致没有映射而报空指针异常
+    call-setters-on-nulls: true

@@ -1,0 +1,4 @@
+/**
+ * client module
+ */
+package ${package};

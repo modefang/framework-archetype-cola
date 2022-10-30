@@ -1,0 +1,2 @@
+arthas:
+  tunnel-server: ws://xxxxxx:7777/ws

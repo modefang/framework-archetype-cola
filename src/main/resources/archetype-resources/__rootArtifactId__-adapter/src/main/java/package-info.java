@@ -1,0 +1,4 @@
+/**
+ * adapter module
+ */
+package ${package};

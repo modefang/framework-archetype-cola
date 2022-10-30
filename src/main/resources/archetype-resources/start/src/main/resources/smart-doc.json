@@ -1,0 +1,15 @@
+{
+  "projectName": "${rootArtifactId}",
+  "outPath": "target/doc",
+  "serverUrl": "http://localhost:8080",
+  "coverOld": true,
+  "allInOne": true,
+  "allInOneDocFileName": "index.html",
+  "createDebugPage": true,
+  "style": "solarized-light",
+  "appToken": "xxxxxx",
+  "openUrl": "https://xxxxxx.com/doc",
+  "replace": true,
+  "debugEnvName": "测试环境",
+  "debugEnvUrl": "http://xxxxxx.xxxxxx.svc:8080"
+}

@@ -1,0 +1,114 @@
+#set( $symbol_dollar = '$' )
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Properties>
+        <!-- 应用名称 -->
+        <Property name="APP_NAME" value="${symbol_dollar}${symbol_dollar}{lower:${symbol_dollar}{spring:spring.application.name}}"/>
+        <!-- 日志文件路径 -->
+        <Property name="LOG_HOME" value="./logs"/>
+        <!-- 日志打印配置 -->
+        <SpringProfile name="dev | test">
+            <Property name="LOG_PATTERN"
+                      value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} %style{%pid}{magenta} %X{trace.id} --- [%15.15t] %style{%-40.40logger{39}}{cyan}: %msg%n%throwable"/>
+        </SpringProfile>
+        <SpringProfile name="product">
+            <Property name="LOG_PATTERN"
+                      value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %pid %X{trace.id} --- [%15.15t] %-40.40logger{39}: %msg%n%throwable"/>
+        </SpringProfile>
+    </Properties>
+
+    <Appenders>
+        <!--控制台日志，控制台输出 -->
+        <Console name="STDOUT">
+            <PatternLayout pattern="${symbol_dollar}{LOG_PATTERN}" disableAnsi="false"/>
+        </Console>
+
+        <!-- dev 环境配置 -->
+        <SpringProfile name="dev | test">
+            <RollingRandomAccessFile name="rollingFileDebug" fileName="${symbol_dollar}{LOG_HOME}/debug/${symbol_dollar}{APP_NAME}-debug.log"
+                                     filePattern="${symbol_dollar}{LOG_HOME}/debug/${symbol_dollar}{APP_NAME}-debug.%d{yyyy-MM-dd}.%i.log"
+                                     immediateFlush="false" append="false">
+                <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+                <PatternLayout pattern="${symbol_dollar}{LOG_PATTERN}"/>
+                <Policies>
+                    <!--默认一天一个文件-->
+                    <TimeBasedTriggeringPolicy/>
+                    <!--一天内大于size就单独分隔-->
+                    <SizeBasedTriggeringPolicy size="1GB"/>
+                </Policies>
+                <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+                <DefaultRolloverStrategy max="30"/>
+            </RollingRandomAccessFile>
+
+            <RollingRandomAccessFile name="rollingFileInfo" fileName="${symbol_dollar}{LOG_HOME}/info/${symbol_dollar}{APP_NAME}-info.log"
+                                     filePattern="${symbol_dollar}{LOG_HOME}/info/${symbol_dollar}{APP_NAME}-info.%d{yyyy-MM-dd}.%i.log"
+                                     immediateFlush="false" append="false">
+                <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+                <PatternLayout pattern="${symbol_dollar}{LOG_PATTERN}"/>
+                <Policies>
+                    <!--默认一天一个文件-->
+                    <TimeBasedTriggeringPolicy/>
+                    <!--一天内大于size就单独分隔-->
+                    <SizeBasedTriggeringPolicy size="1GB"/>
+                </Policies>
+                <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+                <DefaultRolloverStrategy max="30"/>
+            </RollingRandomAccessFile>
+
+            <RollingRandomAccessFile name="rollingFileWarn" fileName="${symbol_dollar}{LOG_HOME}/warn/${symbol_dollar}{APP_NAME}-warn.log"
+                                     filePattern="${symbol_dollar}{LOG_HOME}/warn/${symbol_dollar}{APP_NAME}-warn.%d{yyyy-MM-dd}.%i.log"
+                                     immediateFlush="false" append="false">
+                <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+                <PatternLayout pattern="${symbol_dollar}{LOG_PATTERN}"/>
+                <Policies>
+                    <!--默认一天一个文件-->
+                    <TimeBasedTriggeringPolicy/>
+                    <!--一天内大于size就单独分隔-->
+                    <SizeBasedTriggeringPolicy size="1GB"/>
+                </Policies>
+                <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+                <DefaultRolloverStrategy max="30"/>
+            </RollingRandomAccessFile>
+
+            <RollingRandomAccessFile name="rollingFileError" fileName="${symbol_dollar}{LOG_HOME}/error/${symbol_dollar}{APP_NAME}-error.log"
+                                     filePattern="${symbol_dollar}{LOG_HOME}/error/${symbol_dollar}{APP_NAME}-error.%d{yyyy-MM-dd}.%i.log"
+                                     immediateFlush="false" append="false">
+                <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+                <PatternLayout pattern="${symbol_dollar}{LOG_PATTERN}"/>
+                <Policies>
+                    <!--默认一天一个文件-->
+                    <TimeBasedTriggeringPolicy/>
+                    <!--一天内大于size就单独分隔-->
+                    <SizeBasedTriggeringPolicy size="1GB"/>
+                </Policies>
+                <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+                <DefaultRolloverStrategy max="30"/>
+            </RollingRandomAccessFile>
+        </SpringProfile>
+    </Appenders>
+
+    <Loggers>
+        <SpringProfile name="product">
+            <Root level="info" includeLocation="true">
+                <AppenderRef ref="STDOUT"/>
+            </Root>
+        </SpringProfile>
+
+        <!-- dev 环境配置 -->
+        <SpringProfile name="dev | test">
+            <Root level="info" includeLocation="true">
+                <AppenderRef ref="STDOUT"/>
+                <AppenderRef ref="rollingFileError"/>
+                <AppenderRef ref="rollingFileWarn"/>
+                <AppenderRef ref="rollingFileInfo"/>
+                <AppenderRef ref="rollingFileDebug"/>
+            </Root>
+        </SpringProfile>
+    </Loggers>
+
+</Configuration>

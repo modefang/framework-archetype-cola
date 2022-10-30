@@ -1,0 +1,4 @@
+/**
+ * infrastructure module
+ */
+package ${package};

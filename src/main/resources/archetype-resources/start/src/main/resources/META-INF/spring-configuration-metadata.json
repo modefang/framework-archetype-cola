@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "spring.profiles.group",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "description": "spring profile groups"
+    }
+  ]
+}
