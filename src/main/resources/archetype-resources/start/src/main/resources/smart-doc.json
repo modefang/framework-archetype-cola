@@ -8,7 +8,7 @@
   "createDebugPage": true,
   "style": "solarized-light",
   "appToken": "xxxxxx",
-  "openUrl": "https://xxxxxx.com/doc",
+  "openUrl": "https://xxxxxx.com/api",
   "replace": true,
   "debugEnvName": "测试环境",
   "debugEnvUrl": "http://xxxxxx.xxxxxx.svc:8080"
