@@ -1,5 +1,7 @@
 package ${package}.exception;
 
+import ${package}.util.GsonUtil;
+import feign.FeignException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -27,6 +29,16 @@ public class ExceptionHandle {
         return ResponseEntity.internalServerError()
                 .body(Response.buildFailure(SysErrorCode.S_UNKNOWN_ERROR.getErrCode(),
                         SysErrorCode.S_UNKNOWN_ERROR.getErrDesc()));
+    }
+
+    /**
+     * Feign 调用异常处理
+     */
+    @ExceptionHandler({FeignException.class})
+    public ResponseEntity<Response> feignExceptionHandler(FeignException e) {
+        log.error("FeignException message: {}", e.getMessage(), e);
+        Response response = GsonUtil.jsonToBean(e.contentUTF8(), Response.class);
+        return ResponseEntity.internalServerError().body(response);
     }
 
     /**

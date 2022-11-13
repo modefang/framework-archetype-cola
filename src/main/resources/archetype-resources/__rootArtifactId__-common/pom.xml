@@ -33,6 +33,13 @@
         </dependency>
         <!--Spring Boot End-->
 
+        <!-- Spring Cloud -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--Spring Cloud End-->
+
         <!--Misc-->
         <dependency>
             <groupId>org.projectlombok</groupId>
