@@ -1,7 +1,7 @@
 package ${package}.intercepter;
 
 import com.google.common.collect.Lists;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.lang.NonNull;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.UUID;
 
-@Log4j2
+@Slf4j
 @Component
 public class LogInterceptor implements HandlerInterceptor {
 

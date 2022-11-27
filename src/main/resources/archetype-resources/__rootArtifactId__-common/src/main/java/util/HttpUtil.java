@@ -1,6 +1,6 @@
 package ${package}.util;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -23,7 +23,7 @@ import java.util.Base64;
 import java.util.Enumeration;
 import java.util.Map;
 
-@Log4j2
+@Slf4j
 public class HttpUtil {
 
     private static final RestTemplate REST_TEMPLATE;

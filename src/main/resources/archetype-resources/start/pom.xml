@@ -61,11 +61,6 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-spring-boot</artifactId>
         </dependency>
-        <!--Making All Loggers Asynchronous-->
-        <dependency>
-            <groupId>com.lmax</groupId>
-            <artifactId>disruptor</artifactId>
-        </dependency>
         <!--Log4j2 End-->
 
         <!--Misc-->
@@ -89,7 +84,7 @@
             <plugin>
                 <groupId>com.github.shalousun</groupId>
                 <artifactId>smart-doc-maven-plugin</artifactId>
-                <version>2.6.0</version>
+                <version>2.6.2</version>
                 <configuration>
                     <!--指定生成文档的使用的配置文件,配置文件放在自己的项目中-->
                     <configFile>src/main/resources/smart-doc.json</configFile>
