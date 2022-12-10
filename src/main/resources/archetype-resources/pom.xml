@@ -10,24 +10,31 @@
     <name>${artifactId}</name>
 
     <properties>
+        <!--System-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
 
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <lombok.version>1.18.24</lombok.version>
-        <mybatis-plus-starter.version>3.5.2</mybatis-plus-starter.version>
-        <druid-starter.version>1.2.9</druid-starter.version>
+        <!--Misc-->
+        <druid-starter.version>1.2.15</druid-starter.version>
         <mybatis-starter.version>2.2.2</mybatis-starter.version>
+        <mybatis-plus-starter.version>3.5.2</mybatis-plus-starter.version>
         <redisson-starter.version>3.17.5</redisson-starter.version>
-        <arthas-starter.version>3.6.4</arthas-starter.version>
+        <lombok.version>1.18.24</lombok.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <guava.version>31.1-jre</guava.version>
+        <gson.version>2.10</gson.version>
+        <jolokia.version>1.7.1</jolokia.version>
+        <arthas-starter.version>3.6.7</arthas-starter.version>
+        <prometheus.version>1.9.6</prometheus.version>
 
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-boot.version>2.7.2</spring-boot.version>
+        <!--Framework-->
         <cola.components.version>4.3.1</cola.components.version>
-
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-boot.version>2.7.6</spring-boot.version>
         <start-class>${package}.Application</start-class>
     </properties>
 
@@ -102,6 +109,21 @@
             </dependency>
             <!--COLA Components End-->
 
+            <!--Spring Boot-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-starter.version}</version>
+            </dependency>
+            <!--Spring Boot End-->
+
             <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -112,13 +134,11 @@
             </dependency>
             <!--Spring Cloud End-->
 
-            <!--Spring Boot-->
+            <!--Datasource-->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -126,26 +146,30 @@
                 <version>${mybatis-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid-starter.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-starter.version}</version>
             </dependency>
+            <!--Datasource End-->
+
+            <!--Monitor-->
             <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson-starter.version}</version>
+                <groupId>org.jolokia</groupId>
+                <artifactId>jolokia-core</artifactId>
+                <version>${jolokia.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.taobao.arthas</groupId>
                 <artifactId>arthas-spring-boot-starter</artifactId>
                 <version>${arthas-starter.version}</version>
             </dependency>
-            <!--Spring Boot End-->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${prometheus.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!--Monitor End-->
 
             <!--Misc-->
             <dependency>
@@ -154,34 +178,24 @@
                 <version>${lombok.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.12.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>31.1-jre</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.9.0</version>
-            </dependency>
-            <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jolokia</groupId>
-                <artifactId>jolokia-core</artifactId>
-                <version>1.7.1</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-registry-prometheus</artifactId>
-                <version>1.9.3</version>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
             <!--Misc End-->
         </dependencies>

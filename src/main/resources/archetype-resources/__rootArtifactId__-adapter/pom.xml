@@ -23,10 +23,6 @@
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-app</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-common</artifactId>
-        </dependency>
         <!--Project modules End-->
 
         <!--Spring Boot-->

@@ -104,6 +104,7 @@
                         <include>com.google.code.gson:gson</include>
                         <!-- 如果配置了includes的情况下， 使用了mybatis-plus的分页需要include所使用的源码包 -->
                         <include>com.baomidou:mybatis-plus-extension</include>
+                        <include>com.alibaba.cola:cola-component-dto</include>
                     </includes>
                 </configuration>
                 <executions>
